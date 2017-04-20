@@ -10,8 +10,10 @@
   "author": "lavender",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^3.10.10",
     "express": "^4.15.2",
     "jasmine": "^2.5.3",
-    "body-parser":"^3.10.10"
+    "json-file": "^0.1.0",
+    "jsonfile": "^2.4.0"
   }
 }

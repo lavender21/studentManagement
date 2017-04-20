@@ -3,7 +3,10 @@ const parser = require('../app/parseModule');
 describe("A suit for data type convert functions", function () {
     describe("A suit for convertToStudentObject function", function () {
         it("return studentObject data type when input valid student info", function () {
-            const input = "宁润婷,111,汉,物网131,语文:80,数学:90,英语:85,计算机:90";
+            const input = {
+                name: '宁润婷', id: '111', nation: '汉', klass: '物网131',
+                score: {'语文': 80,'数学': 90, '英语': 85, '计算机': 90}
+            };
             const output = {
                 name: '宁润婷', id: '111', nation: '汉', klass: '物网131',
                 score: [{'语文': 80}, {'数学': 90}, {'英语': 85}, {'计算机': 90}]

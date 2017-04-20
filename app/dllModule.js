@@ -1,5 +1,15 @@
 const printer = require('./printModule');
 const parser = require('./parseModule');
+const jsonfile = require('jsonfile');
+const file = 'student.json';
+
+function read(){
+    return jsonfile.readFileSync(file);
+}
+
+function write(writeJson) {
+    jsonfile.writeFileSync(file, writeJson);
+}
 
 function isStudentExist(studentId, students) {
     return students.hasOwnProperty(studentId);
@@ -47,25 +57,20 @@ function calculateClassScore(students) {
     };
 }
 
-function generateStudentInfo(input, students) {
-    if (!parser.isValidStudentInput(input)) {
-        printer.printStudentError();
-        return false;
-    }
+function generateStudentInfo(input) {
+    let students = read();
     let student = parser.convertToStudentObject(input);
-    if (isStudentExist(student.id)) {
-        printer.printStudentWarning();
-        return false;
+    if (isStudentExist(student.id, students)) {
+        return printer.printStudentWarning();
     }
-    students[student.id] = calculateStudentScore(student);
-    printer.printStudentSuccess(student);
-    return true;
+    students[student.id] = student;
+    write(students);
+    return printer.printStudentSuccess(student);
 }
 
 function generateStudentScore(input) {
     if (!parser.isValidStudentIdInput(input)) {
-        printer.printStudentIdError();
-        return false;
+        return printer.printStudentIdError();
     }
     let studentIdArr = parser.convertToStudentIdList(input);
     let classScore = calculateClassScore();
@@ -77,7 +82,6 @@ function generateStudentScore(input) {
     printer.printStudentScore(scoreObj);
     return true;
 }
-
 module.exports = {
     isStudentExist:isStudentExist,
 
