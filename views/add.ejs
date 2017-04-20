@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><%= title %></title>
+</head>
+<body>
+<h1><%= title %></h1>
+<ul style="list-style: none;">
+    <li>
+        <label for="studentname">姓名</label>
+        <input type="text" name="studentname" id="studentname">
+    </li>
+    <li>
+        <label for="studentid">学号</label>
+        <input type="text" name="studentid" id="studentid">
+    </li>
+    <li>
+        <label for="nation">名族</label>
+        <input type="text" name="nation" id="nation">
+    </li>
+    <li>
+        <label for="klass">班级</label>
+        <input type="text" name="klass" id="klass">
+    </li>
+    <li>
+        <label for="math">数学</label>
+        <input type="text" name="math" id="math">
+    </li>
+    <li>
+        <label for="english">英语</label>
+        <input type="text" name="english" id="english">
+    </li>
+    <li>
+        <label for="computer">计算机</label>
+        <input type="text" name="computer" id="computer">
+    </li>
+</ul>
+    <button id="submit">提交</button>
+</body>
+<script src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
+<script>
+    $('#submit').click(function () {
+        var student = {};
+        student.name = $('#studentname').val();
+        student.id = $('#studentid').val();
+        student.nation = $('#nation').val();
+        student.klass = $('#klass').val();
+        student.score = {
+            math:Number($('#math').val()),
+            english:Number($('#english').val()),
+            computer:Number($('#computer').val())
+        };
+        var data = JSON.stringify(student);
+        console.log(data);
+        $.ajax({
+            type:'POST',
+            url:'/add',
+            data:data,
+            dataType: 'json',
+            success: function (data) {
+                alert(data);
+                history.back();
+            },
+            error: function (err) {
+                alert(err);
+                location.reload();
+            }
+        });
+    });
+</script>
+</html>
