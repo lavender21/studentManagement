@@ -4,12 +4,14 @@
   "description": "management student system",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"node index.js"
+    "test": "jasmine",
+    "start": "node index.js"
   },
   "author": "lavender",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.15.2"
+    "express": "^4.15.2",
+    "jasmine": "^2.5.3",
+    "body-parser":"^3.10.10"
   }
 }
