@@ -63,25 +63,27 @@ function generateStudentInfo(input) {
     if (isStudentExist(student.id, students)) {
         return printer.printStudentWarning();
     }
-    students[student.id] = student;
+    students[student.id] = calculateStudentScore(student);
     write(students);
     return printer.printStudentSuccess(student);
 }
 
 function generateStudentScore(input) {
+    console.log(input);
     if (!parser.isValidStudentIdInput(input)) {
         return printer.printStudentIdError();
     }
+    let students = read();
     let studentIdArr = parser.convertToStudentIdList(input);
-    let classScore = calculateClassScore();
-    let studentList = getStudentInfo(studentIdArr);
+    let classScore = calculateClassScore(students);
+    let studentList = getStudentInfo(studentIdArr, students);
     if (!classScore || studentList.length === 0) {
         return false;
     }
     let scoreObj = Object.assign({}, classScore, {studentList: studentList});
-    printer.printStudentScore(scoreObj);
-    return true;
+    return printer.printStudentScore(scoreObj);
 }
+
 module.exports = {
     isStudentExist:isStudentExist,
 
