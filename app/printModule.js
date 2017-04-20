@@ -1,4 +1,8 @@
 module.exports = {
+    printMenu(){
+        return [{info:"添加学生信息",link:"/add"},
+            {info:"打印学生成绩",link:"/search"}];
+    },
 
     printStudentPrompt() {
         return "\n请输入学生信息（格式：姓名, 学号, 民族, 班级, 学科: 成绩, ...），按回车提交（按*返回上一级）：\n";
