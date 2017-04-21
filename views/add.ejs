@@ -6,17 +6,23 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><%= title %></title>
+    <link rel="stylesheet" href="css/add.css"/>
+    <style>
+
+    </style>
 </head>
 <body>
 <h1><%= title %></h1>
-<ul style="list-style: none;">
+<ul>
     <li>
         <label for="studentname">姓名</label>
         <input type="text" name="studentname" id="studentname">
+        <span id="nameError" class="error">姓名不能为空</span>
     </li>
     <li>
         <label for="studentid">学号</label>
         <input type="text" name="studentid" id="studentid">
+        <span id="idError" class="error">学号不能为空</span>
     </li>
     <li>
         <label for="nation">名族</label>
@@ -38,38 +44,11 @@
         <label for="computer">计算机</label>
         <input type="text" name="computer" id="computer">
     </li>
+    <span id="isNaNError" class="error">成绩必须为数字</span>
 </ul>
-    <button id="submit">提交</button>
+<button id="submit">提交</button>
+<a href="/">返回</a>
 </body>
-<script src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
-<script>
-    $('#submit').click(function () {
-        var student = {};
-        student.name = $('#studentname').val();
-        student.id = $('#studentid').val();
-        student.nation = $('#nation').val();
-        student.klass = $('#klass').val();
-        student.score = {
-            math:Number($('#math').val()),
-            english:Number($('#english').val()),
-            computer:Number($('#computer').val())
-        };
-        var data = JSON.stringify(student);
-        console.log(data);
-        $.ajax({
-            type:'POST',
-            url:'/add',
-            data:data,
-            dataType: 'json',
-            success: function (data) {
-                alert(data);
-                history.back();
-            },
-            error: function (err) {
-                alert(err);
-                location.reload();
-            }
-        });
-    });
-</script>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/add.js"></script>
 </html>
