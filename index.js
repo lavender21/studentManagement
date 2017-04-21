@@ -31,7 +31,6 @@ app.post('/add', (req, res) => {
     if (!req.body) {
         return res.statusCode(400);
     }
-    console.log(req.body);
     res.json(dll.generateStudentInfo(req.body));
 });
 
@@ -40,11 +39,10 @@ app.get('/search/:id', (req, res) => {
         return res.statusCode(400);
     }
     let score = dll.generateStudentScore(req.params.id);
-    console.log(score);
-
-    res.render('score', {students:score.studentList,
+    res.json(score);
+    /*res.render('score', {students:score.studentList,
     average:score.average,
-    middleScore:score.middleScore});
+    middleScore:score.middleScore});*/
 });
 
 app.listen(3000);

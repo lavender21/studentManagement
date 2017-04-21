@@ -52,7 +52,7 @@ function calculateClassScore(students) {
         middleScore = sumScoreList[Math.floor(sumScoreList.length / 2)];
     }
     return {
-        average: classAverage / Object.keys(students).length,
+        average: (classAverage / Object.keys(students).length).toFixed(2),
         middleScore: middleScore
     };
 }
@@ -80,8 +80,7 @@ function generateStudentScore(input) {
     if (!classScore || studentList.length === 0) {
         return false;
     }
-    let scoreObj = Object.assign({}, classScore, {studentList: studentList});
-    return printer.printStudentScore(scoreObj);
+    return Object.assign({}, classScore, {studentList: studentList});
 }
 
 module.exports = {
