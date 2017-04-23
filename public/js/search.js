@@ -34,14 +34,16 @@ function parseToHtml(data) {
         <th>平均分</th>
         <th>总分</th>
     </tr>`;
-    data.studentList.forEach(item => {
-        htmlStr +=`<tr><td>${item.name}</td>`;
-        item.score.forEach(val => {
-            let score = val[Object.keys(val)];
-           htmlStr += `<td>${score}</td>`;
+    if (data.studentList.length > 0){
+        data.studentList.forEach(item => {
+            htmlStr +=`<tr><td>${item.name}</td>`;
+            item.score.forEach(val => {
+                let score = val[Object.keys(val)];
+                htmlStr += `<td>${score}</td>`;
+            });
+            htmlStr +=`<td>${item.average}</td><td>${item.sumScore}</td>`;
         });
-        htmlStr +=`<td>${item.average}</td><td>${item.sumScore}</td>`;
-    });
+    }
     htmlStr += `<tr>
         <td colspan="6">全班总分平均分：${data.average}</td>
     </tr>
@@ -49,5 +51,8 @@ function parseToHtml(data) {
         <td colspan="6">全班总分中位数: ${data.middleScore}</td>
     </tr>
 </table>`;
+    if (data.notExistStudent.length > 0){
+        htmlStr += `<div class="text-danger">学生${data.notExistStudent}不存在</div>`;
+    }
     $('#scoreList').html(htmlStr);
 }

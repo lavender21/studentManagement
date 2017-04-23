@@ -29,7 +29,7 @@ describe("A suit for getStudentInfo function", function () {
     });
     it("return student info list when input student id list", function () {
         const input = ['111', '123', '135'];
-        const output = [{
+        const output = {exist:[{
             name: 'aaa',
             id: '111',
             nation: 'han',
@@ -39,7 +39,8 @@ describe("A suit for getStudentInfo function", function () {
             sumScore: 90
         },
             {name: 'aaa', id: '123', nation: 'han', class: '131', score: [{'语文': 90}], average: 90, sumScore: 90},
-            {name: 'aaa', id: '135', nation: 'han', class: '131', score: [{'语文': 90}], average: 90, sumScore: 90}];
+            {name: 'aaa', id: '135', nation: 'han', class: '131', score: [{'语文': 90}], average: 90, sumScore: 90}],
+            notExist:[]};
 
         const result = dll.getStudentInfo(input, allStudentInfo);
 
@@ -47,7 +48,7 @@ describe("A suit for getStudentInfo function", function () {
     });
     it("return exist student info when input student id list contain not exist student id", function () {
         const input = ['111', '123', '333'];
-        const output = [{
+        const output = {exist:[{
             name: 'aaa',
             id: '111',
             nation: 'han',
@@ -56,7 +57,8 @@ describe("A suit for getStudentInfo function", function () {
             average: 90,
             sumScore: 90
         },
-            {name: 'aaa', id: '123', nation: 'han', class: '131', score: [{'语文': 90}], average: 90, sumScore: 90}];
+            {name: 'aaa', id: '123', nation: 'han', class: '131', score: [{'语文': 90}], average: 90, sumScore: 90}],
+            notExist:['333']};
 
         const result = dll.getStudentInfo(input, allStudentInfo);
 
@@ -100,7 +102,7 @@ describe("A suit for calculateClassScore function", function () {
         allStudentInfo = {};
     });
     it("return score list when input student id list is whole class", function () {
-        const output = {average: 163.5, middleScore: 180};
+        const output = {average: 163.50, middleScore: 180};
 
         const result = dll.calculateClassScore(allStudentInfo);
 

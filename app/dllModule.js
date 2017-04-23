@@ -25,11 +25,16 @@ function calculateStudentScore(student) {
 }
 
 function getStudentInfo(studentIdArr, students) {
-    return studentIdArr.filter(item => {
+    let notExist = [];
+    let exist = studentIdArr.filter(item => {
+        if (!isStudentExist(item,students)){
+            notExist.push(item);
+        }
         return isStudentExist(item, students);
     }).map(item => {
         return students[item];
     });
+    return {exist:exist,notExist:notExist};
 }
 
 function calculateClassScore(students) {
@@ -69,7 +74,6 @@ function generateStudentInfo(input) {
 }
 
 function generateStudentScore(input) {
-    console.log(input);
     if (!parser.isValidStudentIdInput(input)) {
         return printer.printStudentIdError();
     }
@@ -77,10 +81,10 @@ function generateStudentScore(input) {
     let studentIdArr = parser.convertToStudentIdList(input);
     let classScore = calculateClassScore(students);
     let studentList = getStudentInfo(studentIdArr, students);
-    if (!classScore || studentList.length === 0) {
+    if (!classScore) {
         return false;
     }
-    return Object.assign({}, classScore, {studentList: studentList});
+    return Object.assign({}, classScore, {studentList: studentList.exist, notExistStudent:studentList.notExist});
 }
 
 module.exports = {

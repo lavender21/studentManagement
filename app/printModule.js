@@ -5,7 +5,7 @@ module.exports = {
     },
 
     printStudentPrompt() {
-        return "\n请输入学生信息（格式：姓名, 学号, 民族, 班级, 学科: 成绩, ...），按回车提交（按*返回上一级）：\n";
+        return "\n请输入学生信息（格式：姓名, 学号, 民族, 班级, 学科: 成绩, ...），按回车提交（按*返回上一级：\n";
     },
 
     printStudentError() {
@@ -21,7 +21,7 @@ module.exports = {
     },
 
     printStudentIdPrompt() {
-        return '\n请输入要打印的学生的学号（格式： 学号, 学号,...），按回车提交（按*返回上一级）：\n';
+        return '\n请输入要打印的学生的学号（格式： 学号, 学号,...）若不存在该学生则成绩表中不打印：\n';
     },
 
     printStudentScore(scoreObj) {
@@ -42,6 +42,6 @@ module.exports = {
     },
 
     printStudentIdError() {
-        return '请按正确的格式输入要打印的学生的学号（格式： 学号, 学号,...），按回车提交：';
+        return '请按正确的格式输入要打印的学生的学号（格式： 学号, 学号,...)';
     }
 };
