@@ -6,16 +6,23 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><%= title %></title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<h1><%= title %></h1>
-    <label for="idList"><%= promptInput %></label>
-    <input type="text" name="idList" id="idList">
-    <button id="search">查询</button>
-    <a href="/">返回</a>
-<div id="scoreList">
+<div class="panel">
+    <h1 class="text-center text-primary"><%= title %></h1>
+    <div class="form-group">
+        <label for="idList" class="control-label"><%= promptInput %></label>
+        <input class="form-control" type="text" name="idList" id="idList">
+    </div>
+    <button id="search" class="btn btn-primary">查询</button>
+    <a href="/" class="btn btn-default">返回</a>
+    <div id="scoreList">
+    </div>
 </div>
+
+
 
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="js/search.js"></script>

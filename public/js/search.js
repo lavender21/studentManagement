@@ -1,5 +1,10 @@
 $('#search').click(function () {
-    let url = "/search/" + $('#idList').val();
+    let data = $('#idList').val();
+    if (!isValidStudentIdInput(data)){
+        alert('输入格式错误');
+        return;
+    }
+    let url = "/search/" + data;
     $.ajax({
         url: url,
         type: "GET",
@@ -13,16 +18,21 @@ $('#search').click(function () {
     });
 });
 
+function isValidStudentIdInput(studentIdStr) {
+    let reg = /^(\d+[,])*(\d+)$/;
+    return reg.test(studentIdStr);
+}
+
 function parseToHtml(data) {
-    let htmlStr = `<h4>成绩单</h4>
-<table>
+    let htmlStr = `<h4 class="text-center text-info">成绩单</h4>
+<table class="table table-responsive table-hover table-bordered">
     <tr>
-        <td>姓名</td>
-        <td>数学</td>
-        <td>英语</td>
-        <td>计算机</td>
-        <td>平均分</td>
-        <td>总分</td>
+        <th>姓名</th>
+        <th>数学</th>
+        <th>英语</th>
+        <th>计算机</th>
+        <th>平均分</th>
+        <th>总分</th>
     </tr>`;
     data.studentList.forEach(item => {
         htmlStr +=`<tr><td>${item.name}</td>`;

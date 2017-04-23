@@ -6,48 +6,71 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><%= title %></title>
-    <link rel="stylesheet" href="css/add.css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css"/>
     <style>
 
     </style>
 </head>
 <body>
-<h1><%= title %></h1>
-<ul>
-    <li>
-        <label for="studentname">姓名</label>
-        <input type="text" name="studentname" id="studentname">
-        <span id="nameError" class="error">姓名不能为空</span>
-    </li>
-    <li>
-        <label for="studentid">学号</label>
-        <input type="text" name="studentid" id="studentid">
-        <span id="idError" class="error">学号不能为空</span>
-    </li>
-    <li>
-        <label for="nation">名族</label>
-        <input type="text" name="nation" id="nation">
-    </li>
-    <li>
-        <label for="klass">班级</label>
-        <input type="text" name="klass" id="klass">
-    </li>
-    <li>
-        <label for="math">数学</label>
-        <input type="text" name="math" id="math">
-    </li>
-    <li>
-        <label for="english">英语</label>
-        <input type="text" name="english" id="english">
-    </li>
-    <li>
-        <label for="computer">计算机</label>
-        <input type="text" name="computer" id="computer">
-    </li>
-    <span id="isNaNError" class="error">成绩必须为数字</span>
-</ul>
-<button id="submit">提交</button>
-<a href="/">返回</a>
+<div class="panel">
+    <h1 class="text-center text-primary"><%= title %></h1>
+    <ul class="form-horizontal">
+        <li class="form-group">
+            <label class="control-label col-sm-2" for="studentname">姓名</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" name="studentname" id="studentname">
+                <span id="nameError" class="error">姓名不能为空</span>
+            </div>
+        </li>
+        <li class="form-group">
+            <label class="control-label col-sm-2" for="studentid">学号</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" name="studentid" id="studentid">
+                <span id="idError" class="error">学号不能为空</span>
+            </div>
+        </li>
+        <li class="form-group">
+            <label class="control-label col-sm-2" for="nation">名族</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" name="nation" id="nation">
+            </div>
+        </li>
+        <li class="form-group">
+            <label class="control-label col-sm-2" for="klass">班级</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" name="klass" id="klass">
+            </div>
+        </li>
+        <li class="form-group">
+            <label class="control-label col-sm-2" for="math">数学</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" name="math" id="math">
+            </div>
+        </li>
+        <li class="form-group">
+            <label class="control-label col-sm-2" for="english">英语</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" name="english" id="english">
+            </div>
+        </li>
+        <li class="form-group">
+            <label class="control-label col-sm-2" for="computer">计算机</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" name="computer" id="computer">
+                <span id="isNaNError" class="error">成绩必须为数字</span>
+            </div>
+        </li>
+        <li class="form-group">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-10">
+                <button id="submit" class="btn btn-primary">提交</button>
+                <a href="/" class="btn btn-default">返回</a>
+            </div>
+        </li>
+    </ul>
+</div>
+
 </body>
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="js/add.js"></script>

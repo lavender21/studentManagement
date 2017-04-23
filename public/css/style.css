@@ -1,3 +1,10 @@
+body .panel{
+    background: #eee;
+    width: 50%;
+    min-width: 300px;
+    margin: 50px auto;
+    padding:20px;
+}
 ul {
     list-style:none;
 }
@@ -5,6 +12,9 @@ ul {
     color: #f00;
     font-size: 12px;
     display: none;
+}
+table{
+    background: #fff;
 }
 table tr td{
     width:100px;

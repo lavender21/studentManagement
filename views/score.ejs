@@ -1,0 +1,27 @@
+<h4>成绩单</h4>
+<table>
+    <tr>
+        <td>姓名</td>
+        <td>数学</td>
+        <td>英语</td>
+        <td>计算机</td>
+        <td>平均分</td>
+        <td>总分</td>
+    </tr>
+    <% for(let i=0;i<students.length;i++) {%>
+    <tr>
+        <td><%= students[i].name%></td>
+        <% for(let j=0;j<students[i].score.length;j++){%>
+        <td><% students[i].score[Object.keys(students[i].score[j])]%></td>
+        <% }%>
+        <td><%= students[i].average%></td>
+        <td><%= students[i].sumScore%></td>
+    </tr>
+    <%}%>
+    <tr>
+        <td colspan="6">全班总分平均分：<%= average%></td>
+    </tr>
+    <tr>
+        <td colspan="6">全班总分中位数: <%= middleScore%></td>
+    </tr>
+</table>

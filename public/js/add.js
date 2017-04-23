@@ -1,15 +1,21 @@
 function isEmpty() {
     if ($('#studentname').val() === '') {
         $('#nameError').show(300);
+        $('#studentname').parent().parent().addClass('has-error');
         return false;
     }else{
         $('#nameError').hide();
+        $('#studentname').parent().parent().removeClass('has-error');
+        $('#studentname').parent().parent().addClass('has-success');
     }
     if ($('#studentid').val() === '') {
         $('#idError').show(300);
+        $('#studentid').parent().parent().addClass('has-error');
         return false;
     }
     $('#idError').hide();
+    $('#studentid').parent().parent().removeClass('has-error');
+    $('#studentid').parent().parent().addClass('has-success');
     return true;
 }
 

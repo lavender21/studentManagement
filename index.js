@@ -35,14 +35,12 @@ app.post('/add', (req, res) => {
 });
 
 app.get('/search/:id', (req, res) => {
+    console.log(req.params);
     if (!req.params.id){
         return res.statusCode(400);
     }
     let score = dll.generateStudentScore(req.params.id);
     res.json(score);
-    /*res.render('score', {students:score.studentList,
-    average:score.average,
-    middleScore:score.middleScore});*/
 });
 
 app.listen(3000);
