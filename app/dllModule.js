@@ -1,5 +1,3 @@
-const printer = require('./printModule');
-const parser = require('./parseModule');
 const jsonfile = require('jsonfile');
 const file = 'student.json';
 
@@ -62,31 +60,6 @@ function calculateClassScore(students) {
     };
 }
 
-function generateStudentInfo(input) {
-    let students = read();
-    let student = parser.convertToStudentObject(input);
-    if (isStudentExist(student.id, students)) {
-        return printer.printStudentWarning();
-    }
-    students[student.id] = calculateStudentScore(student);
-    write(students);
-    return printer.printStudentSuccess(student);
-}
-
-function generateStudentScore(input) {
-    if (!parser.isValidStudentIdInput(input)) {
-        return printer.printStudentIdError();
-    }
-    let students = read();
-    let studentIdArr = parser.convertToStudentIdList(input);
-    let classScore = calculateClassScore(students);
-    let studentList = getStudentInfo(studentIdArr, students);
-    if (!classScore) {
-        return false;
-    }
-    return Object.assign({}, classScore, {studentList: studentList.exist, notExistStudent:studentList.notExist});
-}
-
 module.exports = {
     isStudentExist:isStudentExist,
 
@@ -96,7 +69,7 @@ module.exports = {
 
     calculateStudentScore:calculateStudentScore,
 
-    generateStudentInfo:generateStudentInfo,
+    read:read,
 
-    generateStudentScore:generateStudentScore
+    write:write
 };

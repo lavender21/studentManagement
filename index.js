@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const ejs = require('ejs');
 const dll = require('./app/dllModule');
 const printer = require('./app/printModule');
+const parser = require('./app/parseModule');
 
 let app = new express();
 
@@ -28,18 +29,30 @@ app.get('/search', (req, res) => {
 });
 
 app.post('/add', (req, res) => {
-    if (!req.body) {
-        return res.statusCode(400);
+    let prompt = "";
+    let students = dll.read();
+    let student = parser.convertToStudentObject(req.body);
+    if (dll.isStudentExist(student.id, students)) {
+        prompt = printer.printStudentWarning();
     }
-    res.json(dll.generateStudentInfo(req.body));
+    students[student.id] = dll.calculateStudentScore(student);
+    dll.write(students);
+    prompt = printer.printStudentSuccess(student);
+    res.json(prompt);
 });
 
 app.get('/search/:id', (req, res) => {
-    console.log(req.params);
-    if (!req.params.id){
-        return res.statusCode(400);
+    if (!parser.isValidStudentIdInput(req.params.id)) {
+        return res.json(printer.printStudentIdError());
     }
-    let score = dll.generateStudentScore(req.params.id);
+    let students = dll.read();
+    let studentIdArr = parser.convertToStudentIdList(req.params.id);
+    let classScore = dll.calculateClassScore(students);
+    let studentList = dll.getStudentInfo(studentIdArr, students);
+    if (!classScore) {
+        return res.json(false);
+    }
+    let  score =  Object.assign({}, classScore, {studentList: studentList.exist, notExistStudent:studentList.notExist});
     res.json(score);
 });
 
